@@ -22,6 +22,7 @@ type Service interface {
 
 type watermarkService struct{}
 
+// Just a constructor. When NewService constructor is used, it returns result from methods of empty new type watermarkService
 func NewService() Service { return &watermarkService{} }
 
 func (w *watermarkService) Get(_ context.Context, filter ...internal.Filter) ([]internal.Document, error) {
@@ -45,9 +46,9 @@ func (w *watermarkService) Watermark(_ context.Context, ticketID, mark string) (
 }
 
 func (w *watermarkService) AddDocument(_ context.Context, doc *internal.Document) (string, error) {
-	newTicketID := shortuuid.New()
+	newTicketId := shortuuid.New()
 
-	return newTicketID, nil
+	return newTicketId, nil
 }
 
 func (w *watermarkService) ServiceStatus(_ context.Context) (int, error) {
